@@ -10,3 +10,15 @@ C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\obj\Debug\ClinicDb.cspr
 C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\obj\Debug\ClinicDb.csproj.CopyComplete
 C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\obj\Debug\ClinicDb.dll
 C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\obj\Debug\ClinicDb.pdb
+C:\git\ClinicManagement\ClinicDb\bin\Debug\ClinicDb.dll.config
+C:\git\ClinicManagement\ClinicDb\bin\Debug\ClinicDb.dll
+C:\git\ClinicManagement\ClinicDb\bin\Debug\ClinicDb.pdb
+C:\git\ClinicManagement\ClinicDb\bin\Debug\EntityFramework.dll
+C:\git\ClinicManagement\ClinicDb\bin\Debug\EntityFramework.SqlServer.dll
+C:\git\ClinicManagement\ClinicDb\bin\Debug\EntityFramework.xml
+C:\git\ClinicManagement\ClinicDb\bin\Debug\EntityFramework.SqlServer.xml
+C:\git\ClinicManagement\ClinicDb\obj\Debug\ClinicDb.csprojAssemblyReference.cache
+C:\git\ClinicManagement\ClinicDb\obj\Debug\ClinicDb.csproj.CoreCompileInputs.cache
+C:\git\ClinicManagement\ClinicDb\obj\Debug\ClinicDb.csproj.CopyComplete
+C:\git\ClinicManagement\ClinicDb\obj\Debug\ClinicDb.dll
+C:\git\ClinicManagement\ClinicDb\obj\Debug\ClinicDb.pdb
