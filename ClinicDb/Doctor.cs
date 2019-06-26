@@ -14,6 +14,12 @@ namespace ClinicDb
     
     public partial class Doctor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Doctor()
+        {
+            this.Bookings = new HashSet<Booking>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -21,7 +27,8 @@ namespace ClinicDb
         public string Email { get; set; }
         public Nullable<int> CategoryId { get; set; }
     
-        public virtual Booking Booking { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Booking> Bookings { get; set; }
         public virtual Category Category { get; set; }
     }
 }

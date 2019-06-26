@@ -6,18 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ClinicDb;
+using ClinicWeb.Models;
 
 namespace ClinicWeb.Controllers
 {
     public class DoctorsController : Controller
     {
-        private DoctorAppointmenEntities db = new DoctorAppointmenEntities();
+        private DoctorAppointmenEntities3 db = new DoctorAppointmenEntities3();
 
         // GET: Doctors
         public ActionResult Index()
         {
-            var doctors = db.Doctors.Include(d => d.Booking).Include(d => d.Category);
+            var doctors = db.Doctors.Include(d => d.Category);
             return View(doctors.ToList());
         }
 
@@ -39,7 +39,6 @@ namespace ClinicWeb.Controllers
         // GET: Doctors/Create
         public ActionResult Create()
         {
-            ViewBag.Id = new SelectList(db.Bookings, "Appointmentid", "Appointmentid");
             ViewBag.Id = new SelectList(db.Categories, "Id", "Specialization");
             return View();
         }
@@ -58,7 +57,6 @@ namespace ClinicWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id = new SelectList(db.Bookings, "Appointmentid", "Appointmentid", doctor.Id);
             ViewBag.Id = new SelectList(db.Categories, "Id", "Specialization", doctor.Id);
             return View(doctor);
         }
@@ -75,7 +73,6 @@ namespace ClinicWeb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = new SelectList(db.Bookings, "Appointmentid", "Appointmentid", doctor.Id);
             ViewBag.Id = new SelectList(db.Categories, "Id", "Specialization", doctor.Id);
             return View(doctor);
         }
@@ -93,7 +90,6 @@ namespace ClinicWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id = new SelectList(db.Bookings, "Appointmentid", "Appointmentid", doctor.Id);
             ViewBag.Id = new SelectList(db.Categories, "Id", "Specialization", doctor.Id);
             return View(doctor);
         }

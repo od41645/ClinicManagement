@@ -13,10 +13,10 @@ namespace ClinicDb
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DoctorAppointmenEntities : DbContext
+    public partial class DoctorAppointmenEntities1 : DbContext
     {
-        public DoctorAppointmenEntities()
-            : base("name=DoctorAppointmenEntities")
+        public DoctorAppointmenEntities1()
+            : base("name=DoctorAppointmenEntities1")
         {
         }
     

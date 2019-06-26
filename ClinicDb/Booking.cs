@@ -15,9 +15,9 @@ namespace ClinicDb
     public partial class Booking
     {
         public int Appointmentid { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> CategoryId { get; set; }
         public Nullable<int> DoctorId { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Doctor Doctor { get; set; }

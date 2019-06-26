@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bf1592f50acf4da2b186bb9e3341fff6" Name="Diagram1">
+      <Diagram DiagramId="a0e0c5fc62ab4165a1a96233ea490d17" Name="Diagram1">
         <EntityTypeShape EntityType="DoctorAppointmenModel.Booking" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DoctorAppointmenModel.Category" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="DoctorAppointmenModel.Doctor" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DoctorAppointmenModel.Patient" Width="1.5" PointX="2.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DoctorAppointmenModel.Treatmant" Width="1.5" PointX="5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoctorAppointmenModel.Patient" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoctorAppointmenModel.Treatmant" Width="1.5" PointX="10" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="DoctorAppointmenModel.FK_Booking_Category" ManuallyRouted="false" />
         <AssociationConnector Association="DoctorAppointmenModel.FK_Booking_Doctor" ManuallyRouted="false" />
         <AssociationConnector Association="DoctorAppointmenModel.FK_Doctor_Category" ManuallyRouted="false" />
