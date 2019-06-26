@@ -1,0 +1,12 @@
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\bin\Debug\ClinicDb.dll.config
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\bin\Debug\ClinicDb.dll
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\bin\Debug\ClinicDb.pdb
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\bin\Debug\EntityFramework.dll
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\bin\Debug\EntityFramework.xml
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\obj\Debug\ClinicDb.csprojAssemblyReference.cache
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\obj\Debug\ClinicDb.csproj.CoreCompileInputs.cache
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\obj\Debug\ClinicDb.csproj.CopyComplete
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\obj\Debug\ClinicDb.dll
+C:\Users\This-Pc\source\repos\ClinicManagementt\ClinicDb\obj\Debug\ClinicDb.pdb

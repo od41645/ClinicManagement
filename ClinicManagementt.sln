@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{4D17BB33-19C8-46D6-8981-8B09732569C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicWeb", "ClinicWeb\ClinicWeb.csproj", "{2B3EE378-B689-4187-AC31-5776933F9711}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{DF8F29AF-3BAC-41F7-A20A-60BFEB844302}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicDb", "ClinicDb\ClinicDb.csproj", "{E7315EDE-6D82-4EF2-8C9C-97E85539DFAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B3EE378-B689-4187-AC31-5776933F9711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3EE378-B689-4187-AC31-5776933F9711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3EE378-B689-4187-AC31-5776933F9711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3EE378-B689-4187-AC31-5776933F9711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7315EDE-6D82-4EF2-8C9C-97E85539DFAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7315EDE-6D82-4EF2-8C9C-97E85539DFAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7315EDE-6D82-4EF2-8C9C-97E85539DFAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7315EDE-6D82-4EF2-8C9C-97E85539DFAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2B3EE378-B689-4187-AC31-5776933F9711} = {4D17BB33-19C8-46D6-8981-8B09732569C4}
+		{E7315EDE-6D82-4EF2-8C9C-97E85539DFAC} = {DF8F29AF-3BAC-41F7-A20A-60BFEB844302}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2ED8C3B2-2FB8-4306-B3E5-22CD244697F3}
+	EndGlobalSection
+EndGlobal
