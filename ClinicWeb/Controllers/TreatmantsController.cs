@@ -17,7 +17,7 @@ namespace ClinicWeb.Controllers
         // GET: Treatmants
         public ActionResult Index()
         {
-            var treatmants = db.Treatmants.Include(t => t.Patient);
+            var treatmants = db.Treatmants.Include(t => t.Patient).Include(t => t.Doctor);
             return View(treatmants.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace ClinicWeb.Controllers
         public ActionResult Create()
         {
             ViewBag.PatientId = new SelectList(db.Patients, "Id", "Name");
+            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Name");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace ClinicWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PatientId,Treatment,Note")] Treatmant treatmant)
+        public ActionResult Create([Bind(Include = "Id,PatientId,Treatment,Note,DoctorId")] Treatmant treatmant)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +59,7 @@ namespace ClinicWeb.Controllers
             }
 
             ViewBag.PatientId = new SelectList(db.Patients, "Id", "Name", treatmant.PatientId);
+            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Name", treatmant.DoctorId);
             return View(treatmant);
         }
 
@@ -74,6 +76,7 @@ namespace ClinicWeb.Controllers
                 return HttpNotFound();
             }
             ViewBag.PatientId = new SelectList(db.Patients, "Id", "Name", treatmant.PatientId);
+            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Name", treatmant.DoctorId);
             return View(treatmant);
         }
 
@@ -82,7 +85,7 @@ namespace ClinicWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PatientId,Treatment,Note")] Treatmant treatmant)
+        public ActionResult Edit([Bind(Include = "Id,PatientId,Treatment,Note,DoctorId")] Treatmant treatmant)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +94,7 @@ namespace ClinicWeb.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.PatientId = new SelectList(db.Patients, "Id", "Name", treatmant.PatientId);
+            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Name", treatmant.DoctorId);
             return View(treatmant);
         }
 

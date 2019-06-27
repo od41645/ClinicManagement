@@ -18,7 +18,9 @@ namespace ClinicDb
         public Nullable<int> PatientId { get; set; }
         public string Treatment { get; set; }
         public string Note { get; set; }
+        public Nullable<int> DoctorId { get; set; }
     
         public virtual Patient Patient { get; set; }
+        public virtual Doctor Doctor { get; set; }
     }
 }

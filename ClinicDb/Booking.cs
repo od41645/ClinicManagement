@@ -18,8 +18,10 @@ namespace ClinicDb
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> CategoryId { get; set; }
         public Nullable<int> DoctorId { get; set; }
+        public Nullable<int> PatientId { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Doctor Doctor { get; set; }
+        public virtual Patient Patient { get; set; }
     }
 }

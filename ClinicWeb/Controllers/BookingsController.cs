@@ -17,7 +17,7 @@ namespace ClinicWeb.Controllers
         // GET: Bookings
         public ActionResult Index()
         {
-            var bookings = db.Bookings.Include(b => b.Category).Include(b => b.Doctor);
+            var bookings = db.Bookings.Include(b => b.Category).Include(b => b.Doctor).Include(b=>b.Patient);
             return View(bookings.ToList());
         }
 
@@ -41,6 +41,7 @@ namespace ClinicWeb.Controllers
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Specialization");
             ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Name");
+            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Name");
             return View();
         }
 
@@ -60,6 +61,7 @@ namespace ClinicWeb.Controllers
 
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Specialization", booking.CategoryId);
             ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Name", booking.DoctorId);
+            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Name");
             return View(booking);
         }
 
@@ -77,6 +79,7 @@ namespace ClinicWeb.Controllers
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Specialization", booking.CategoryId);
             ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Name", booking.DoctorId);
+            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Name");
             return View(booking);
         }
 
@@ -95,6 +98,7 @@ namespace ClinicWeb.Controllers
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Specialization", booking.CategoryId);
             ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Name", booking.DoctorId);
+            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Name");
             return View(booking);
         }
 

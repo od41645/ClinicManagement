@@ -11,24 +11,25 @@ namespace ClinicDb
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Patient
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Patient()
         {
-            this.Treatmants = new HashSet<Treatmant>();
+            this.Bookings = new HashSet<Booking>();
         }
     
         public int Id { get; set; }
+       [Display(Name ="Patient Name")]
         public string Name { get; set; }
         public string Address { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
         public Nullable<int> Age { get; set; }
-        public Nullable<int> TreatmentId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Treatmant> Treatmants { get; set; }
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }

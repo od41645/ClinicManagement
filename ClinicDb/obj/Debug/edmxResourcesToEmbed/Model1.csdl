@@ -10,6 +10,8 @@
     <Property Name="DoctorId" Type="Int32" />
     <NavigationProperty Name="Category" Relationship="Self.FK_Booking_Category" FromRole="Booking" ToRole="Category" />
     <NavigationProperty Name="Doctor" Relationship="Self.FK_Booking_Doctor" FromRole="Booking" ToRole="Doctor" />
+    <Property Name="PatientId" Type="Int32" />
+    <NavigationProperty Name="Patient" Relationship="DoctorAppointmenModel.FK_Booking_Category1" FromRole="Booking" ToRole="Patient" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -32,6 +34,7 @@
     <Property Name="CategoryId" Type="Int32" />
     <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Doctor" FromRole="Doctor" ToRole="Booking" />
     <NavigationProperty Name="Category" Relationship="Self.FK_Doctor_Category" FromRole="Doctor" ToRole="Category" />
+    <NavigationProperty Name="Treatmants" Relationship="DoctorAppointmenModel.FK_Treatmant_Doctor" FromRole="Doctor" ToRole="Treatmant" />
   </EntityType>
   <EntityType Name="Patient">
     <Key>
@@ -43,8 +46,7 @@
     <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Age" Type="Int32" />
-    <Property Name="TreatmentId" Type="Int32" />
-    <NavigationProperty Name="Treatmants" Relationship="Self.FK_Treatmant_Patient" FromRole="Patient" ToRole="Treatmant" />
+    <NavigationProperty Name="Bookings" Relationship="DoctorAppointmenModel.FK_Booking_Category1" FromRole="Patient" ToRole="Booking" />
   </EntityType>
   <EntityType Name="Treatmant">
     <Key>
@@ -55,6 +57,8 @@
     <Property Name="Treatment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Note" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Patient" Relationship="Self.FK_Treatmant_Patient" FromRole="Treatmant" ToRole="Patient" />
+    <Property Name="DoctorId" Type="Int32" />
+    <NavigationProperty Name="Doctor" Relationship="DoctorAppointmenModel.FK_Treatmant_Doctor" FromRole="Treatmant" ToRole="Doctor" />
   </EntityType>
   <Association Name="FK_Booking_Category">
     <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -126,5 +130,37 @@
       <End Role="Patient" EntitySet="Patients" />
       <End Role="Treatmant" EntitySet="Treatmants" />
     </AssociationSet>
+    <AssociationSet Name="FK_Booking_Category1" Association="DoctorAppointmenModel.FK_Booking_Category1">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Treatmant_Doctor" Association="DoctorAppointmenModel.FK_Treatmant_Doctor">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="Treatmant" EntitySet="Treatmants" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_Booking_Category1">
+    <End Type="DoctorAppointmenModel.Patient" Role="Patient" Multiplicity="0..1" />
+    <End Type="DoctorAppointmenModel.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Treatmant_Doctor">
+    <End Type="DoctorAppointmenModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="DoctorAppointmenModel.Treatmant" Role="Treatmant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Treatmant">
+        <PropertyRef Name="DoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

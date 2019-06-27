@@ -1543,13 +1543,13 @@
     <Content Include="Views\Patients\Details.cshtml" />
     <Content Include="Views\Patients\Edit.cshtml" />
     <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Startup\Index.cshtml" />
     <Content Include="Views\Treatmants\Create.cshtml" />
     <Content Include="Views\Treatmants\Delete.cshtml" />
     <Content Include="Views\Treatmants\Details.cshtml" />
     <Content Include="Views\Treatmants\Edit.cshtml" />
     <Content Include="Views\Treatmants\Index.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\Startup\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

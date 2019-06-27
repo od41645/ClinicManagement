@@ -8,6 +8,7 @@
     <Property Name="Date" Type="datetime" />
     <Property Name="CategoryId" Type="int" />
     <Property Name="DoctorId" Type="int" />
+    <Property Name="PatientId" Type="int" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -37,7 +38,6 @@
     <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="Age" Type="int" />
-    <Property Name="TreatmentId" Type="int" />
   </EntityType>
   <EntityType Name="Treatmant">
     <Key>
@@ -47,16 +47,17 @@
     <Property Name="PatientId" Type="int" />
     <Property Name="Treatment" Type="nvarchar" MaxLength="50" />
     <Property Name="Note" Type="nvarchar" MaxLength="1000" />
+    <Property Name="DoctorId" Type="int" />
   </EntityType>
   <Association Name="FK_Booking_Category">
-    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Category">
+      <Principal Role="Patient">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Booking">
-        <PropertyRef Name="CategoryId" />
+        <PropertyRef Name="PatientId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -84,6 +85,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Treatmant_Doctor">
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+    <End Role="Treatmant" Type="Self.Treatmant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Treatmant">
+        <PropertyRef Name="DoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Treatmant_Patient">
     <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
     <End Role="Treatmant" Type="Self.Treatmant" Multiplicity="*" />
@@ -103,7 +116,7 @@
     <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Treatmant" EntityType="Self.Treatmant" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Booking_Category" Association="Self.FK_Booking_Category">
-      <End Role="Category" EntitySet="Category" />
+      <End Role="Patient" EntitySet="Patient" />
       <End Role="Booking" EntitySet="Booking" />
     </AssociationSet>
     <AssociationSet Name="FK_Booking_Doctor" Association="Self.FK_Booking_Doctor">
@@ -113,6 +126,10 @@
     <AssociationSet Name="FK_Doctor_Category" Association="Self.FK_Doctor_Category">
       <End Role="Category" EntitySet="Category" />
       <End Role="Doctor" EntitySet="Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Treatmant_Doctor" Association="Self.FK_Treatmant_Doctor">
+      <End Role="Doctor" EntitySet="Doctor" />
+      <End Role="Treatmant" EntitySet="Treatmant" />
     </AssociationSet>
     <AssociationSet Name="FK_Treatmant_Patient" Association="Self.FK_Treatmant_Patient">
       <End Role="Patient" EntitySet="Patient" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DoctorAppointmenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DoctorAppointmenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Booking">
           <Key>
             <PropertyRef Name="Appointmentid" />
@@ -13,6 +13,7 @@
           <Property Name="Date" Type="datetime" />
           <Property Name="CategoryId" Type="int" />
           <Property Name="DoctorId" Type="int" />
+          <Property Name="PatientId" Type="int" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -42,7 +43,6 @@
           <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Age" Type="int" />
-          <Property Name="TreatmentId" Type="int" />
         </EntityType>
         <EntityType Name="Treatmant">
           <Key>
@@ -52,16 +52,17 @@
           <Property Name="PatientId" Type="int" />
           <Property Name="Treatment" Type="nvarchar" MaxLength="50" />
           <Property Name="Note" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DoctorId" Type="int" />
         </EntityType>
         <Association Name="FK_Booking_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="Patient">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Booking">
-              <PropertyRef Name="CategoryId" />
+              <PropertyRef Name="PatientId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -89,6 +90,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Treatmant_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+          <End Role="Treatmant" Type="Self.Treatmant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Treatmant">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Treatmant_Patient">
           <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
           <End Role="Treatmant" Type="Self.Treatmant" Multiplicity="*" />
@@ -108,7 +121,7 @@
           <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatmant" EntityType="Self.Treatmant" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Booking_Category" Association="Self.FK_Booking_Category">
-            <End Role="Category" EntitySet="Category" />
+            <End Role="Patient" EntitySet="Patient" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
           <AssociationSet Name="FK_Booking_Doctor" Association="Self.FK_Booking_Doctor">
@@ -119,13 +132,16 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Doctor" EntitySet="Doctor" />
           </AssociationSet>
+          <AssociationSet Name="FK_Treatmant_Doctor" Association="Self.FK_Treatmant_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Treatmant" EntitySet="Treatmant" />
+          </AssociationSet>
           <AssociationSet Name="FK_Treatmant_Patient" Association="Self.FK_Treatmant_Patient">
             <End Role="Patient" EntitySet="Patient" />
             <End Role="Treatmant" EntitySet="Treatmant" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DoctorAppointmenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -139,6 +155,8 @@
           <Property Name="DoctorId" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Booking_Category" FromRole="Booking" ToRole="Category" />
           <NavigationProperty Name="Doctor" Relationship="Self.FK_Booking_Doctor" FromRole="Booking" ToRole="Doctor" />
+          <Property Name="PatientId" Type="Int32" />
+          <NavigationProperty Name="Patient" Relationship="DoctorAppointmenModel.FK_Booking_Category1" FromRole="Booking" ToRole="Patient" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -161,6 +179,7 @@
           <Property Name="CategoryId" Type="Int32" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Doctor" FromRole="Doctor" ToRole="Booking" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Doctor_Category" FromRole="Doctor" ToRole="Category" />
+          <NavigationProperty Name="Treatmants" Relationship="DoctorAppointmenModel.FK_Treatmant_Doctor" FromRole="Doctor" ToRole="Treatmant" />
         </EntityType>
         <EntityType Name="Patient">
           <Key>
@@ -172,8 +191,7 @@
           <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Age" Type="Int32" />
-          <Property Name="TreatmentId" Type="Int32" />
-          <NavigationProperty Name="Treatmants" Relationship="Self.FK_Treatmant_Patient" FromRole="Patient" ToRole="Treatmant" />
+          <NavigationProperty Name="Bookings" Relationship="DoctorAppointmenModel.FK_Booking_Category1" FromRole="Patient" ToRole="Booking" />
         </EntityType>
         <EntityType Name="Treatmant">
           <Key>
@@ -184,6 +202,8 @@
           <Property Name="Treatment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Note" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Patient" Relationship="Self.FK_Treatmant_Patient" FromRole="Treatmant" ToRole="Patient" />
+          <Property Name="DoctorId" Type="Int32" />
+          <NavigationProperty Name="Doctor" Relationship="DoctorAppointmenModel.FK_Treatmant_Doctor" FromRole="Treatmant" ToRole="Doctor" />
         </EntityType>
         <Association Name="FK_Booking_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -255,7 +275,39 @@
             <End Role="Patient" EntitySet="Patients" />
             <End Role="Treatmant" EntitySet="Treatmants" />
           </AssociationSet>
+          <AssociationSet Name="FK_Booking_Category1" Association="DoctorAppointmenModel.FK_Booking_Category1">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatmant_Doctor" Association="DoctorAppointmenModel.FK_Treatmant_Doctor">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="Treatmant" EntitySet="Treatmants" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Booking_Category1">
+          <End Type="DoctorAppointmenModel.Patient" Role="Patient" Multiplicity="0..1" />
+          <End Type="DoctorAppointmenModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Treatmant_Doctor">
+          <End Type="DoctorAppointmenModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+          <End Type="DoctorAppointmenModel.Treatmant" Role="Treatmant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Treatmant">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -265,6 +317,7 @@
           <EntitySetMapping Name="Bookings">
             <EntityTypeMapping TypeName="DoctorAppointmenModel.Booking">
               <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
                 <ScalarProperty Name="Appointmentid" ColumnName="Appointmentid" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
@@ -301,13 +354,13 @@
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="TreatmentId" ColumnName="TreatmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Treatmants">
             <EntityTypeMapping TypeName="DoctorAppointmenModel.Treatmant">
               <MappingFragment StoreEntitySet="Treatmant">
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
                 <ScalarProperty Name="Treatment" ColumnName="Treatment" />

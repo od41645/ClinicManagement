@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Bookings">
       <EntityTypeMapping TypeName="DoctorAppointmenModel.Booking">
         <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
           <ScalarProperty Name="Appointmentid" ColumnName="Appointmentid" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
@@ -40,13 +41,13 @@
           <ScalarProperty Name="Mobile" ColumnName="Mobile" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Age" ColumnName="Age" />
-          <ScalarProperty Name="TreatmentId" ColumnName="TreatmentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Treatmants">
       <EntityTypeMapping TypeName="DoctorAppointmenModel.Treatmant">
         <MappingFragment StoreEntitySet="Treatmant">
+          <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="PatientId" ColumnName="PatientId" />
           <ScalarProperty Name="Treatment" ColumnName="Treatment" />

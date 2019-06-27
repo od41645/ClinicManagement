@@ -14,6 +14,8 @@
         <AssociationConnector Association="DoctorAppointmenModel.FK_Booking_Doctor" ManuallyRouted="false" />
         <AssociationConnector Association="DoctorAppointmenModel.FK_Doctor_Category" ManuallyRouted="false" />
         <AssociationConnector Association="DoctorAppointmenModel.FK_Treatmant_Patient" ManuallyRouted="false" />
+        <AssociationConnector Association="DoctorAppointmenModel.FK_Booking_Category1" />
+        <AssociationConnector Association="DoctorAppointmenModel.FK_Treatmant_Doctor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
